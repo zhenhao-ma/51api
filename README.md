@@ -27,7 +27,7 @@ xmlhttp.send(JSON.stringify({ 'data': 'json格式，一些数据' ));
 
 打开terminal，然后依次输入
 ```
-git clone  
+git clone https://github.com/zhenhao-ma/51api.git
 cd 51api
 npm install
 ```
