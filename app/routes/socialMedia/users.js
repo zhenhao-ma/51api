@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-let db = require('../orm/models/index');
-let usersFn = require('../orm/models/users');
-let reject = require('../errorHandlers/promiseReturnError');
+let db = require('../../orm/models');
+let usersFn = require('../../orm/models/socialMedia/users');
+let reject = require('../../errorHandlers/promiseReturnError');
 let users = usersFn(db.sequelize, db.Sequelize);
 let Op = db.Sequelize.Op;
 const uuidv4 = require('uuid/v4');

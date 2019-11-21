@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let socialMediaRouters = require('./socialMedia');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -7,4 +8,19 @@ router.post('/', function(req, res, next) {
     res.send(res.body)
 });
 
-module.exports = router;
+let socialMediaRoutersFn = () => {
+    let r = [];
+    socialMediaRouters.forEach(smr => {
+        r.push({
+            'path': '/social-media',
+            router: smr
+        })
+    });
+    return r
+};
+
+module.exports = [
+    {
+        path: '/',
+        router: router
+    }].concat(socialMediaRoutersFn());

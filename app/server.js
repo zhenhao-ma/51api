@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port, () => {
-  console.log('Gopen_api is now serving @port: ', port);
+  console.log('51Api is now serving @port: ', port);
 });
 server.on('error', onError);
 server.on('listening', onListening);
