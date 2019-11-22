@@ -166,5 +166,4 @@ fabric.properties
 .idea/modules.xml
 .idea/runConfigurations/
 .idea/vcs.xml
-config/config.js
-config/config.json
+config/credential.js

@@ -1,6 +1,6 @@
 let express = require('express');
 let path = require('path');
-let utils = require('./utils/utils');
+let prototypeModification = require('./utils/prototypeModification');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
@@ -21,11 +21,8 @@ app.use(middlewares);
 
 // routes
 routers.forEach(routerObj => {
-    console.log('routerObj: ', routerObj);
     app.use(routerObj.path, routerObj.router);
 });
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 
 
 // error handler at last

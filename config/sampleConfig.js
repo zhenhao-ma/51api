@@ -38,5 +38,8 @@ module.exports = {
             "port": 1111,
             "dialect": "mysql"
         }
+    },
+    jwt: {
+        secret: 'asamplesecret'
     }
 };

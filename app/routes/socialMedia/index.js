@@ -1,5 +1,7 @@
-let UsersRouter = require('./users');
+let UserRouter = require('./user');
+let TrendingRouter = require('./trending');
 
 module.exports = [
-    UsersRouter
+    UserRouter,
+    TrendingRouter
 ];
