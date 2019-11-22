@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 let db = require('../../orm/models');
 let usersFn = require('../../orm/models/socialMedia/users');
 let reject = require('../../errorHandlers/promiseReturnError');
@@ -7,11 +7,11 @@ let jwt = require('../../utils/jwt');
 let User = usersFn(db.sequelize, db.Sequelize);
 let Op = db.Sequelize.Op;
 let socialMediaConfig = require('../../../config/config').app.socialMedia;
-let random = require('../../utils/random');
 const uuidv4 = require('uuid/v4');
 
 router.post('/register', function(req, res, next) {
     let valid = req.body.hasKeys(['username', 'password', 'phone']);
+    console.log('valid!', valid);
     if (valid) {
         User.create({
             id: uuidv4(),
@@ -64,20 +64,10 @@ router.post('/all-notifications', function (req, res, next) {
     res.send(res.body);
 });
 
-router.post('/user-posts', function (req, res, next) {
+router.post('/logout', function (req, res, next) {
     jwt.require(res);
-    res.body['data'] = [];
-    for (let k = 0; k < 5; k ++) {
-        res.body['data'].push(
-            {
-                text: random.post(),
-                video: random.item([null, random.video()])
-            }
-        )
-    }
+    res.body['data'] = true;
     res.send(res.body);
 });
-
-
 
 module.exports = router;
