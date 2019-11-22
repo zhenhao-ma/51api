@@ -32,7 +32,7 @@ cd 51api
 npm install
 ```
 npm install 完毕之后，还要配置 config 文件夹中的 credential.js文件。
-可以参考sampleCredential.js。里面主要需要包含你使用的sql数据库信息，提供给Sequelize ([Sequelize v5配置](https://sequelize.org/v5/manual/getting-started.html#setting-up-a-connection))。配置credential.js完毕之后，直接运行下面代码：
+可以参考sampleCredential.js。里面主要需要包含你使用的sql数据库信息，提供给Sequelize ([Sequelize v5配置 根据cli](https://sequelize.org/v5/manual/migrations.html#the-cli))。配置credential.js完毕之后，直接运行下面代码：
 ```$xslt
 node app/server.js
 ```
