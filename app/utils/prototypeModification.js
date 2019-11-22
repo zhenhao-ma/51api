@@ -9,4 +9,5 @@ Object.prototype.hasKeys = function (keys) {
         }
         return true
     }
+    return false
 };
