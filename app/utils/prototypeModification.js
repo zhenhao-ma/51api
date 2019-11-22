@@ -9,6 +9,7 @@ Object.prototype.hasKeys = function (keys) {
         }
         return true
     }
+    return false
 };
 
 String.prototype.isUuid4 = function () {
