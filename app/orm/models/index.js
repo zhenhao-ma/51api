@@ -1,10 +1,16 @@
 'use strict';
 
+// you can config the process.env.NODE_ENV in either file
+const rootConfig = require('../../../config/config');
+const credential = require('../../../config/config');
+
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
+console.log('The express app is running under a env: ', env, ' environment');
 // const config = require(__dirname + '/../config/config.js')[env];
 const config = require(__dirname + '/config/config.js')[env];
 const db = {};
