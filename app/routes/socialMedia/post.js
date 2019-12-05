@@ -57,7 +57,12 @@ function randPost (mustHaveImage, mustHaveVideo) {
         avatar: random.avatar(),
         image: image,
         username: random.username(),
-        userId: random.userId()
+        userId: random.userId(),
+        postId: random.postId(),
+        forward: random.int(0, 999),
+        like: random.int(0, 999),
+        comment: random.int(0, 999),
+        postAt: random.time()
     }
 };
 
