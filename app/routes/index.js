@@ -12,7 +12,7 @@ let socialMediaRoutersFn = () => {
     let r = [];
     socialMediaRouters.forEach(smr => {
         r.push({
-            'path': '/social-media',
+            'path': '/api/social-media',
             router: smr
         })
     });
