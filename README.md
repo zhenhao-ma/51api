@@ -1,10 +1,9 @@
 # 51Api.io
 一个开源的API供新手学习前端时调用。
+## 官方API文档
+官方API文档：[51api.io](http://51api.io/)
 ## 怎么调用后端API（供新手学习）
-官方API文档：[51api.io](http://51api.io/)）
 下面是前端Javascript 普通调用示范
-
-
 ```
 let http = new XMLHttpRequest();   // 新 HttpRequest 实例 
 let url = "https://51api.io/test"; // 这个 是 API的链接，根据情况改变
