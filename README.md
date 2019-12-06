@@ -1,7 +1,8 @@
 # 51Api.io
 一个开源的API供新手学习前端时调用。
 ## 怎么调用后端API（供新手学习）
-前端Javascript 普通调用示范
+官方API文档：[51api.io](http://51api.io/)）
+下面是前端Javascript 普通调用示范
 
 
 ```
