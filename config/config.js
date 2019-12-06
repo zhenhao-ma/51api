@@ -1,32 +1,32 @@
 let databaseCredentialForSequelize = require('./credential');
 module.exports = {
     apiDesp: {
-        '/social-media/register': '是为了给你学习如何进行新建用户的。' +
+        '/api/social-media/register': '是为了给你学习如何进行新建用户的。' +
             '并且并没有要求提供短信/邮箱认证，你可以在别的Api中学习这些实际操作。' +
             '另外会把用户注册完毕之后的信息（包括密码）全部返还给你，' +
             '这个在实际工作中应该避免。正常来说返回一个已登陆token就好。',
-        '/social-media/login': '这是一个登陆Api，只要账号（手机或者用户名）和密码匹配了之后，就会返回登陆成功的字样。如果你无法登陆，可以进行重新注册。后台是允许您多次重复进行注册的，毕竟只是供学习开发使用。登陆之后会给你返还一个登陆token，并且也会在cookie中给你增加access token。在实际操作中，你应该尽量使用cookie的，而尽量避免使用data中的token。后续在你每次发送请求的时候，都应该考虑附带上token给后端Api作为登陆凭证。如果你把data中的token保存到了localStorage或其它本机位置，你都应该在用户退出的时候进行清理。',
-        '/social-media/logout': '用户退出。这个api正常来说会处理cookie和把之前给过你的token加入到黑名单。但是因为这个是模拟退出，所以后台并没有做这些操作。而作为前端开发的你，应该要在用户退出成功后，立刻删除掉保存在浏览器客户端的token。',
-        '/social-media/unread-notification-number': '会返回用户的未读消息数量。所返回的数字是随机生成的，而且每次都会不一样。在实际工作中，您的后端开发会将一个正确的未读消息数量发送给你您。',
-        '/social-media/top-searched-list':  '返回一个列表，包含了热搜榜单的话题。',
-        '/social-media/top-searched':  '返回一个热搜主题。这个返回是随机的，所以每次都不同。',
-        '/social-media/all-notifications': '返回用户的所有提示信息，包括了系统信息和其它用户的私信。这里面的内容是随机生成的。内容是纯文字，不会出现图片等信息。',
-        '/social-media/user-posts': '返还全部用户发送过的帖子。这些帖子都是随机生成的，且每一次都不一样。',
-        '/social-media/following-posts': '返还用户已经关注了的账号的帖子。这些都是随机生成的头像，名字以及内容。',
-        '/social-media/post-comments': '返回一个帖子的评价。默认随机返回5个评价。你可以通过 键值 commentTotal 传给API来限制每次返回的评论数量。',
-        '/social-media/forward-post': '是给用户转发帖子的。调用的时候需要附带上帖子的id （postId）。这个转发帖子的动作是模拟/虚拟的，换言之没有真正的转发帖子功能。',
-        '/social-media/like-post': '是给用户点赞帖子的。调用的时候需要附带上帖子的id （postId）。这个点赞帖子的动作是模拟/虚拟的，换言之没有真正的点赞帖子功能。',
-        '/social-media/comment-post': '是给用户评论帖子的。调用的时候需要附带上帖子的id （postId）和评论内容comment。这个评论帖子的动作是模拟/虚拟的，换言之没有真正的评论帖子功能。',
-        '/social-media/total-following': '返回用户的粉丝数量。这个数字是随机生成的，无实质性意义。',
-        '/social-media/total-follower': '返回用户的关注的人总数量。这个数字是随机生成的，无实质性意义。',
-        '/social-media/latest-posts': '返回最新的帖子。这些帖子都是随机生成的。',
-        '/social-media/top-posts': '返回最热门的帖子。这些帖子都是随机生成的。',
-        '/social-media/people': '返回一些随机的用户，推荐关注。这些用户信息都是随机生成的，无实质性意义。你可以通过 键值对 total 来修改返回的用户数量。',
-        '/social-media/top-photos': '返回最热门的照片。这些照片都是随机生成的。你可以通过 键值对 total 来修改返回的照片相关帖子的数量。',
-        '/social-media/top-videos': '返回最热门的视频。这些视频都是随机生成的。你可以通过 键值对 total 来修改返回的视频相关帖子的数量。',
-        '/social-media/follow': '关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
-        '/social-media/unfollow': '取消关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
-        '/social-media/recommend-following': '推荐关注一些其它相关的用户'
+        '/api/social-media/login': '这是一个登陆Api，只要账号（手机或者用户名）和密码匹配了之后，就会返回登陆成功的字样。如果你无法登陆，可以进行重新注册。后台是允许您多次重复进行注册的，毕竟只是供学习开发使用。登陆之后会给你返还一个登陆token，并且也会在cookie中给你增加access token。在实际操作中，你应该尽量使用cookie的，而尽量避免使用data中的token。后续在你每次发送请求的时候，都应该考虑附带上token给后端Api作为登陆凭证。如果你把data中的token保存到了localStorage或其它本机位置，你都应该在用户退出的时候进行清理。',
+        '/api/social-media/logout': '用户退出。这个api正常来说会处理cookie和把之前给过你的token加入到黑名单。但是因为这个是模拟退出，所以后台并没有做这些操作。而作为前端开发的你，应该要在用户退出成功后，立刻删除掉保存在浏览器客户端的token。',
+        '/api/social-media/unread-notification-number': '会返回用户的未读消息数量。所返回的数字是随机生成的，而且每次都会不一样。在实际工作中，您的后端开发会将一个正确的未读消息数量发送给你您。',
+        '/api/social-media/top-searched-list':  '返回一个列表，包含了热搜榜单的话题。',
+        '/api/social-media/top-searched':  '返回一个热搜主题。这个返回是随机的，所以每次都不同。',
+        '/api/social-media/all-notifications': '返回用户的所有提示信息，包括了系统信息和其它用户的私信。这里面的内容是随机生成的。内容是纯文字，不会出现图片等信息。',
+        '/api/social-media/user-posts': '返还全部用户发送过的帖子。这些帖子都是随机生成的，且每一次都不一样。',
+        '/api/social-media/following-posts': '返还用户已经关注了的账号的帖子。这些都是随机生成的头像，名字以及内容。',
+        '/api/social-media/post-comments': '返回一个帖子的评价。默认随机返回5个评价。你可以通过 键值 commentTotal 传给API来限制每次返回的评论数量。',
+        '/api/social-media/forward-post': '是给用户转发帖子的。调用的时候需要附带上帖子的id （postId）。这个转发帖子的动作是模拟/虚拟的，换言之没有真正的转发帖子功能。',
+        '/api/social-media/like-post': '是给用户点赞帖子的。调用的时候需要附带上帖子的id （postId）。这个点赞帖子的动作是模拟/虚拟的，换言之没有真正的点赞帖子功能。',
+        '/api/social-media/comment-post': '是给用户评论帖子的。调用的时候需要附带上帖子的id （postId）和评论内容comment。这个评论帖子的动作是模拟/虚拟的，换言之没有真正的评论帖子功能。',
+        '/api/social-media/total-following': '返回用户的粉丝数量。这个数字是随机生成的，无实质性意义。',
+        '/api/social-media/total-follower': '返回用户的关注的人总数量。这个数字是随机生成的，无实质性意义。',
+        '/api/social-media/latest-posts': '返回最新的帖子。这些帖子都是随机生成的。',
+        '/api/social-media/top-posts': '返回最热门的帖子。这些帖子都是随机生成的。',
+        '/api/social-media/people': '返回一些随机的用户，推荐关注。这些用户信息都是随机生成的，无实质性意义。你可以通过 键值对 total 来修改返回的用户数量。',
+        '/api/social-media/top-photos': '返回最热门的照片。这些照片都是随机生成的。你可以通过 键值对 total 来修改返回的照片相关帖子的数量。',
+        '/api/social-media/top-videos': '返回最热门的视频。这些视频都是随机生成的。你可以通过 键值对 total 来修改返回的视频相关帖子的数量。',
+        '/api/social-media/follow': '关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
+        '/api/social-media/unfollow': '取消关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
+        '/api/social-media/recommend-following': '推荐关注一些其它相关的用户'
     },
     staticResponseEntry: {
         contributors: ['ZhenhaoMa', 'chenmeimei', 'xiaolizi'],
