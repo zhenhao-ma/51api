@@ -12,6 +12,7 @@ const validateJwt = (req, res, next) => {
     if (token) {
         jwt.verify(token, config.secret, (err, decoded) => {
             res.locals.jwt = !err;
+            res.locals.jwtDecoded = decoded // suppose to be the userId
         });
     } else {
         res.locals.jwt = false;
