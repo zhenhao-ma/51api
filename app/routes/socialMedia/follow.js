@@ -2,7 +2,7 @@ let random = require('../../utils/random');
 let express = require('express');
 let router = express.Router();
 let jwt = require('../../utils/jwt');
-
+let hasKeys = require('../../utils/utils').hasKeys;
 
 router.post('/total-follower', function (req, res, next) {
     jwt.require(res);
@@ -33,7 +33,7 @@ router.post('/people', function (req, res, next) {
 
 router.post('/follow', function (req, res, next) {
    jwt.require(res);
-   if (req.body.hasKeys(['userId']) && req.body.userId.isUuid4()) {
+   if (hasKeys(req.body, ['userId']) && req.body.userId.isUuid4()) {
        res.body['data'] = true;
        res.send(res.body())
    }
@@ -42,7 +42,7 @@ router.post('/follow', function (req, res, next) {
 
 router.post('/unfollow', function (req, res, next) {
     jwt.require(res);
-    if (req.body.hasKeys(['userId']) && req.body.userId.isUuid4()) {
+    if (hasKeys(req.body, ['userId']) && req.body.userId.isUuid4()) {
         res.body['data'] = true;
         res.send(res.body())
     }

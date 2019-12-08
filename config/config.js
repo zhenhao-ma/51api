@@ -27,7 +27,9 @@ module.exports = {
         '/social-media/follow': '关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
         '/social-media/unfollow': '取消关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
         '/social-media/recommend-following': '推荐关注一些其它相关的用户',
-        '/social-media/user-info': '获取用户账号信息。请注意，在真实工作和项目中，应该避免返回敏感信息，包括用户密码。'
+        '/social-media/user-info': '获取用户账号信息。请注意，在真实工作和项目中，应该避免返回敏感信息，包括用户密码。',
+        '/social-media/forgot-password': '直接重置密码，只需要提供用户名或者手机号。在真实工作中，应该要先进行短信验证。',
+        '/social-media/reset-password':  '通过旧密码来进行重置密码，实际工作中可以考虑加入手机短信验证。',
     },
     staticResponseEntry: {
         contributors: ['ZhenhaoMa', 'chenmeimei', 'xiaolizi'],

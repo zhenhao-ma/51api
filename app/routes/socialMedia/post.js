@@ -2,6 +2,7 @@ let random = require('../../utils/random');
 let express = require('express');
 let router = express.Router();
 let jwt = require('../../utils/jwt');
+const hasKeys = require('../../utils/utils').hasKeys;
 
 router.post('/user-posts', function (req, res, next) {
     jwt.require(res);
@@ -95,7 +96,7 @@ router.post('/latest-posts', function (req, res, next) {
 
 router.post('/forward-post', function (req, res, next) {
     jwt.require(res);
-    if (req.body.hasKeys(['postId']) && req.body.postId.isUuid4) {
+    if (hasKeys(req.body, ['postId']) && req.body.postId.isUuid4) {
         res.body['data'] = true;
         res.send(res.body)
     } else {
@@ -105,7 +106,7 @@ router.post('/forward-post', function (req, res, next) {
 
 router.post('/like-post', function (req, res, next) {
     jwt.require(res);
-    if (req.body.hasKeys(['postId']) && req.body.postId.isUuid4) {
+    if (hasKeys(req.body, ['postId']) && req.body.postId.isUuid4) {
         res.body['data'] = true;
         res.send(res.body)
     } else {
@@ -115,7 +116,7 @@ router.post('/like-post', function (req, res, next) {
 
 router.post('/comment-post', function (req, res, next) {
     jwt.require(res);
-    if (req.body.hasKeys(['postId', 'comment']) && req.body.postId.isUuid4 &&
+    if (hasKeys(req.body, ['postId', 'comment']) && req.body.postId.isUuid4 &&
         typeof req.body.comment === "string" && req.body.comment.length > 0) {
         res.body['data'] = true;
         res.send(res.body)
