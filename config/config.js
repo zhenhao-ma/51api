@@ -26,7 +26,8 @@ module.exports = {
         '/social-media/top-videos': '返回最热门的视频。这些视频都是随机生成的。你可以通过 键值对 total 来修改返回的视频相关帖子的数量。',
         '/social-media/follow': '关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
         '/social-media/unfollow': '取消关注其它用户。这个关注是模拟执行的，背后并没有任何实际操作。',
-        '/social-media/recommend-following': '推荐关注一些其它相关的用户'
+        '/social-media/recommend-following': '推荐关注一些其它相关的用户',
+        '/social-media/user-info': '获取用户账号信息。请注意，在真实工作和项目中，应该避免返回敏感信息，包括用户密码。'
     },
     staticResponseEntry: {
         contributors: ['ZhenhaoMa', 'chenmeimei', 'xiaolizi'],

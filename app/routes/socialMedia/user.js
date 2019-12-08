@@ -5,6 +5,7 @@ let usersFn = require('../../orm/models/socialMedia/users');
 let reject = require('../../errorHandlers/promiseReturnError');
 let jwt = require('../../utils/jwt');
 let User = usersFn(db.sequelize, db.Sequelize);
+let random = require('../../utils/random');
 let Op = db.Sequelize.Op;
 let socialMediaConfig = require('../../../config/config').app.socialMedia;
 const uuidv4 = require('uuid/v4');
@@ -29,6 +30,12 @@ router.post('/register', function(req, res, next) {
     }
 });
 
+function reformatUserData (userDataFromDb) {
+    const plainObject = userDataFromDb.get({ plain: true });
+    plainObject['avatar'] = random.avatar();
+    return plainObject
+}
+
 router.post('/login', function(req, res, next) {
     let valid = req.body.hasKeys(['usernameOrPhone', 'password']);
     if (valid) {
@@ -42,7 +49,7 @@ router.post('/login', function(req, res, next) {
         }).then((users) => {
             // console.log('users: ', users);
             if (users.length > 0) {
-                res.body['data'] = '登陆成功';
+                res.body['data'] = reformatUserData(users[0]);
                 res.body['jwttoken'] = jwt.new({id: users[0].id});
                 res.send(res.body);
             } else {
@@ -50,6 +57,24 @@ router.post('/login', function(req, res, next) {
             }
         })
     }
+});
+
+router.post('/user-info', function(req, res, next) {
+    jwt.require(res);
+    const userId = res.locals.jwtDecoded.id;
+    console.log('the userID: ', userId);
+    User.findAll({
+        where: {
+            id: userId
+        }
+    }).then((users) => {
+        if (users.length > 0) {
+            res.body['data'] = reformatUserData(users[0]);
+            res.send(res.body);
+        } else {
+            reject(res, '无匹配的用户信息');
+        }
+    })
 });
 
 router.post('/unread-notification-number', function (req, res, next) {
