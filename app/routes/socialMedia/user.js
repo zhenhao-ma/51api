@@ -16,7 +16,7 @@ router.post('/register', function(req, res, next) {
     if (valid) {
         User.create({
             id: uuidv4(),
-            phone: req.body.name,
+            phone: req.body.phone,
             username: req.body.username,
             password: req.body.password
         }).then((usr) => {
