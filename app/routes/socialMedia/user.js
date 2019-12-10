@@ -14,15 +14,16 @@ const uuidv4 = require('uuid/v4');
 router.post('/register', function(req, res, next) {
     let valid = hasKeys(req.body, ['username', 'password', 'phone']);
     if (valid) {
+        const uid = uuidv4();
         User.create({
-            id: uuidv4(),
+            id: uid,
             phone: req.body.phone,
             username: req.body.username,
             password: req.body.password
         }).then((usr) => {
             if (usr) {
                 res.body['data'] = usr;
-                res.body['jwttoken'] = jwt.new({id: users[0].id});
+                res.body['jwttoken'] = jwt.new({id: usr.id});
                 res.send(res.body);
             } else {
                 reject(res, '用户创建失败，请检查username, password 和 phone');
@@ -96,28 +97,33 @@ router.post('/logout', function (req, res, next) {
 
 router.post('/forgot-password', function(req, res, next) {
     let valid = hasKeys(req.body, ['usernameOrPhone', 'password']);
-    // directly update the password of ALL matched account
+    // directly update the password of a matched account
     // you should never do this in real world practice
     if (valid) {
-        User.update(
-            {
-                password: req.body.password
-            },
-            {where: {
-                    [Op.or]: [
-                        { phone: req.body.usernameOrPhone},
-                        { username: req.body.usernameOrPhone},
-                    ]
-                }}
-        ).then((updatedRows) => {
-                if (updatedRows[0] > 0) {
+        User.findAll({
+            where: {
+                [Op.or]: [
+                    { phone: req.body.usernameOrPhone, password: req.body.password},
+                    { username: req.body.usernameOrPhone, password: req.body.password},
+                ]
+            }
+        }).then((users) => {
+            if (users.length > 0) {
+                users[0].update(
+                    {
+                        password: req.body.password
+                    }
+                ).then(r => {
                     res.body['data'] = '重置密码成功';
                     res.body['jwttoken'] = jwt.new({id: users[0].id});
                     res.send(res.body);
-                } else {
-                    reject(res, '错误的账号');
-                }
-            })
+                }).catch(err => {
+                    reject('更新失败');
+                });
+            } else {
+                reject(res, '错误的账号');
+            }
+        })
     }
 });
 
