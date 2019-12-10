@@ -28,6 +28,8 @@ router.post('/register', function(req, res, next) {
             } else {
                 reject(res, '用户创建失败，请检查username, password 和 phone');
             }
+        }).catch(err => {
+            reject(res, '用户创建失败，请重试')
         })
     }
 });
@@ -56,6 +58,8 @@ router.post('/login', function(req, res, next) {
             } else {
                 reject(res, '错误的账号或者密码');
             }
+        }).catch(err => {
+            reject(res, '用户登陆失败，请重试')
         })
     }
 });
@@ -74,6 +78,8 @@ router.post('/user-info', function(req, res, next) {
         } else {
             reject(res, '无匹配的用户信息');
         }
+    }).catch(err => {
+        reject(res, '用户信息获取失败，请重试')
     })
 });
 
@@ -118,11 +124,13 @@ router.post('/forgot-password', function(req, res, next) {
                     res.body['jwttoken'] = jwt.new({id: users[0].id});
                     res.send(res.body);
                 }).catch(err => {
-                    reject('更新失败');
+                    reject(res, '更新失败');
                 });
             } else {
                 reject(res, '错误的账号');
             }
+        }).catch(err => {
+            reject(res, '用户重置密码失败，请重试')
         })
     }
 });
@@ -147,6 +155,8 @@ router.post('/reset-password', function(req, res, next) {
             } else {
                 reject(res, '旧密码错误');
             }
+        }).catch(err => {
+            reject(res, '用户重置密码失败，请重试')
         })
     }
 });
