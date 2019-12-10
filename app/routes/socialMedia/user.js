@@ -23,7 +23,7 @@ router.post('/register', function(req, res, next) {
         }).then((usr) => {
             if (usr) {
                 res.body['data'] = usr;
-                res.body['jwttoken'] = jwt.new({id: usr.id});
+                res.body['jwttoken'] = jwt.new({id: uid});
                 res.send(res.body);
             } else {
                 reject(res, '用户创建失败，请检查username, password 和 phone');
