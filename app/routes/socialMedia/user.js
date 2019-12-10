@@ -103,8 +103,8 @@ router.post('/forgot-password', function(req, res, next) {
         User.findAll({
             where: {
                 [Op.or]: [
-                    { phone: req.body.usernameOrPhone, password: req.body.password},
-                    { username: req.body.usernameOrPhone, password: req.body.password},
+                    { phone: req.body.usernameOrPhone },
+                    { username: req.body.usernameOrPhone },
                 ]
             }
         }).then((users) => {
