@@ -22,6 +22,7 @@ router.post('/register', function(req, res, next) {
         }).then((usr) => {
             if (usr) {
                 res.body['data'] = usr;
+                res.body['jwttoken'] = jwt.new({id: users[0].id});
                 res.send(res.body);
             } else {
                 reject(res, '用户创建失败，请检查username, password 和 phone');
@@ -47,7 +48,6 @@ router.post('/login', function(req, res, next) {
                 ]
             }
         }).then((users) => {
-            // console.log('users: ', users);
             if (users.length > 0) {
                 res.body['data'] = reformatUserData(users[0]);
                 res.body['jwttoken'] = jwt.new({id: users[0].id});
@@ -110,9 +110,9 @@ router.post('/forgot-password', function(req, res, next) {
                     ]
                 }}
         ).then((updatedRows) => {
-                console.log('updatedRows: ', updatedRows[0]);
                 if (updatedRows[0] > 0) {
                     res.body['data'] = '重置密码成功';
+                    res.body['jwttoken'] = jwt.new({id: users[0].id});
                     res.send(res.body);
                 } else {
                     reject(res, '错误的账号');
